@@ -1,13 +1,17 @@
 import java.util.*;
-
-public class CompositeIterator implements Iterator {
+/**
+ * This is a special iterator that can traverse the
+ * composite structure of the menu and can be used by
+ * any client, in this example MenuPrinter.
+ */
+public class CompositeIterator implements Iterator<MenuComponent> {
     Stack<Iterator<MenuComponent>> stack = new Stack<Iterator<MenuComponent>>();
     
-    public CompositeIterator(Iterator iterator) {
+    public CompositeIterator(Iterator<MenuComponent> iterator) {
         stack.push(iterator);
     }
 
-    public Object next() {
+    public MenuComponent next() {
         if (hasNext()) {
             Iterator<MenuComponent> iterator = stack.peek();
             MenuComponent component = iterator.next();
